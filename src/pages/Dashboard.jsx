@@ -9,7 +9,8 @@ const Dashboard = () => {
       <Typography variant="h4" gutterBottom>
         Patient Dashboard
       </Typography>
-      <PatientTableDemo/> {/* Patient Table with mocks data */}
+      <PatientTable/>
+      {/* <PatientTableDemo/> Patient Table with mocks data */}
     </Container>
   );
 };

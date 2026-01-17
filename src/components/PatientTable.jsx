@@ -77,6 +77,63 @@ const PatientTable = () => {
         return <CircularProgress />;
       }
 
-      
-
-}
+      return (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>First Name</TableCell>
+                <TableCell>Last Name</TableCell>
+                <TableCell>Address</TableCell>
+                <TableCell>City</TableCell>
+                <TableCell>State</TableCell>
+                <TableCell>Zip</TableCell>
+                <TableCell>Phone</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {patients.map((patient) => (
+                <TableRow key={patient.id}>
+                  <TableCell>{renderCell(patient, "firstName")}</TableCell>
+                  <TableCell>{renderCell(patient, "lastName")}</TableCell>
+                  <TableCell>{renderCell(patient, "address")}</TableCell>
+                  <TableCell>{renderCell(patient, "city")}</TableCell>
+                  <TableCell>{renderCell(patient, "state")}</TableCell>
+                  <TableCell>{renderCell(patient, "zipCode")}</TableCell>
+                  <TableCell>{renderCell(patient, "phoneNumber")}</TableCell>
+                  <TableCell>{renderCell(patient, "email")}</TableCell>
+                  <TableCell>
+                    {editId === patient.id ? (
+                      <>
+                        <IconButton color="primary" onClick={handleSave}>
+                          <Save />
+                        </IconButton>
+                        <IconButton color="secondary" onClick={handleCancel}>
+                          <Cancel />
+                        </IconButton>
+                      </>
+                    ) : (
+                      <>
+                        <IconButton onClick={() => handleEdit(patient)}>
+                          <Edit />
+                        </IconButton>
+                        <IconButton
+                          color="error"
+                          onClick={() => handleDelete(patient.id)}
+                        >
+                          <Delete />
+                        </IconButton>
+                      </>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      );
+    };
+    
+export default PatientTable;
